@@ -91,7 +91,7 @@ namespace ds
                 }
                 // Find Node Corresponding To Index
                 Node *node = head;
-                for (int i = 0; i <= index; ++i)
+                for (int i = 0; i < index; ++i)
                 {
                     node = node->next;
                 }
@@ -216,7 +216,7 @@ namespace ds
                     return;
                 }
                 // Use Special Function If Adding To End
-                if (index == qty - 1)
+                if (index == qty)
                 {
                     addLast(item);
                     return;
@@ -258,6 +258,12 @@ namespace ds
             {
                 // Remove Node Found At Given Index (Throws Exception If Out Of Range)
                 remove(findIndex(index));
+            }
+
+            virtual T& at(int index)
+            {
+                // Find Node At Given Index & Return Item (Throws Exception If Out Of Range)
+                return findIndex(index)->item;
             }
 
             virtual bool contains(const T &item)

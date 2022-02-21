@@ -55,6 +55,14 @@ namespace ds
             virtual void removeAt(int index) = 0;
 
             /**
+             * @brief Get the item at the given index.
+             * 
+             * @param index The index of the item.
+             * @return T& A reference to the item.
+             */
+            virtual T& at(int index) = 0;
+
+            /**
              * @brief Checks whether the list contains an item.
              * 
              * @param item The item to search for.
