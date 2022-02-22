@@ -13,7 +13,7 @@ namespace ds
      * @tparam T The type of item to store.
      */
     template<typename T>
-    class ArrayList : List<T>
+    class ArrayList : public List<T>
     {
         private:
             const int DEFAULT_INITIAL_CAPACITY = 5;

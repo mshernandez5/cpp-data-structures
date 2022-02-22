@@ -12,7 +12,7 @@ namespace ds
      * @tparam T The type of item to store.
      */
     template<typename T>
-    class LinkedList : List<T>
+    class LinkedList : public List<T>
     {
         private:
             /**
