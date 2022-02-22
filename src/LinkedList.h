@@ -82,7 +82,7 @@ namespace ds
              * @param index The index of the node.
              * @return Node* A pointer to the node.
              */
-            Node* findIndex(int index)
+            Node* findNodeByIndex(int index)
             {
                 // Throw Exception If Index Out Of Range
                 if (index < 0 || index >= qty)
@@ -105,7 +105,7 @@ namespace ds
              * @return Node* A pointer to the first node containing
              *               the item or nullptr if none was found.
              */
-            Node* findItem(const T &item)
+            Node* findNodeByItem(const T &item)
             {
                 // Search For Node With Item
                 Node *current = head;
@@ -222,7 +222,7 @@ namespace ds
                     return;
                 }
                 // Find Nodes That Should Be Linked Before & After Newly Added Node
-                Node *next = findIndex(index);
+                Node *next = findNodeByIndex(index);
                 Node *prev = next->prev;
                 // Place New Node & Relink Surrounding Nodes
                 Node *node = new Node {prev, next, item};
@@ -235,7 +235,7 @@ namespace ds
             virtual void set(int index, const T &item)
             {
                 // Find Node At Index (Throws Exception If Out Of Range)
-                Node *node = findIndex(index);
+                Node *node = findNodeByIndex(index);
                 // Replace Item
                 node->item = item;
             }
@@ -243,7 +243,7 @@ namespace ds
             virtual bool remove(const T &item)
             {
                 // Search For Node With Item
-                Node *node = findItem(item);
+                Node *node = findNodeByItem(item);
                 // If Item Not Found, Return False
                 if (node == nullptr)
                 {
@@ -257,19 +257,19 @@ namespace ds
             virtual void removeAt(int index)
             {
                 // Remove Node Found At Given Index (Throws Exception If Out Of Range)
-                remove(findIndex(index));
+                remove(findNodeByIndex(index));
             }
 
             virtual T& at(int index)
             {
                 // Find Node At Given Index & Return Item (Throws Exception If Out Of Range)
-                return findIndex(index)->item;
+                return findNodeByIndex(index)->item;
             }
 
             virtual bool contains(const T &item)
             {
                 // Return True If Node Containing Item Could Be Found
-                return findItem(item) != nullptr;
+                return findNodeByItem(item) != nullptr;
             }
 
             virtual int size()
