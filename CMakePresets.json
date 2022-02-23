@@ -1,0 +1,16 @@
+{
+    "version": 4,
+    "configurePresets": [
+        {
+            "name": "linux-debug",
+            "displayName": "Linux Debug Configuration",
+            "description": "Create Debug Builds For Linux Using Make",
+            "generator": "Unix Makefiles",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_CXX_COMPILER": "g++"
+            },
+            "binaryDir": "${sourceDir}/build/linux-debug"
+        }
+    ]
+}
