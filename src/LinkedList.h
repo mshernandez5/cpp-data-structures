@@ -205,7 +205,7 @@ namespace ds
             virtual void put(int index, const T &item)
             {
                 // Throw Exception If Index Out Of Range
-                if (index < 0 || index >= qty)
+                if (index < 0 || index > qty)
                 {
                     throw std::out_of_range("Index out of range!");
                 }
