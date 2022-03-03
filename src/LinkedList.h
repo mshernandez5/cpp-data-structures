@@ -196,13 +196,13 @@ namespace ds
                 ++qty;
             }
 
-            virtual void add(const T &item)
+            void add(const T &item) override
             {
                 // Add Equivalent To Add Last
                 addLast(item);
             }
 
-            virtual void put(int index, const T &item)
+            void put(int index, const T &item) override
             {
                 // Throw Exception If Index Out Of Range
                 if (index < 0 || index > qty)
@@ -232,7 +232,7 @@ namespace ds
                 ++qty;
             }
 
-            virtual void set(int index, const T &item)
+            void set(int index, const T &item) override
             {
                 // Find Node At Index (Throws Exception If Out Of Range)
                 Node *node = findNodeByIndex(index);
@@ -240,7 +240,7 @@ namespace ds
                 node->item = item;
             }
 
-            virtual bool remove(const T &item)
+            bool remove(const T &item) override
             {
                 // Search For Node With Item
                 Node *node = findNodeByItem(item);
@@ -254,25 +254,25 @@ namespace ds
                 return true;
             }
 
-            virtual void removeAt(int index)
+            void removeAt(int index) override
             {
                 // Remove Node Found At Given Index (Throws Exception If Out Of Range)
                 remove(findNodeByIndex(index));
             }
 
-            virtual T& at(int index)
+            T& at(int index) override
             {
                 // Find Node At Given Index & Return Item (Throws Exception If Out Of Range)
                 return findNodeByIndex(index)->item;
             }
 
-            virtual bool contains(const T &item)
+            bool contains(const T &item) override
             {
                 // Return True If Node Containing Item Could Be Found
                 return findNodeByItem(item) != nullptr;
             }
 
-            virtual int size()
+            int size() override
             {
                 // Return Number Of Items In List
                 return qty;

@@ -104,7 +104,7 @@ namespace ds
                 delete[] arr;
             }
 
-            virtual void add(const T &item)
+            void add(const T &item) override
             {
                 // Ensure Array Can Accomodate 1 More Element
                 ensureSpace(1);
@@ -112,7 +112,7 @@ namespace ds
                 arr[qty++] = item;
             }
 
-            virtual void put(int index, const T &item)
+            void put(int index, const T &item) override
             {
                 // Check Index
                 if (index < 0 || index > qty)
@@ -131,7 +131,7 @@ namespace ds
                 ++qty;
             }
 
-            virtual void set(int index, const T &item)
+            void set(int index, const T &item) override
             {
                 // Check Index
                 if (index < 0 || index >= qty)
@@ -142,7 +142,7 @@ namespace ds
                 arr[index] = item;
             }
 
-            virtual bool remove(const T &item)
+            bool remove(const T &item) override
             {
                 // Search For First Item Occurence
                 int index = findFirst(item);
@@ -161,7 +161,7 @@ namespace ds
                 return true;
             }
 
-            virtual void removeAt(int index)
+            void removeAt(int index) override
             {
                 // Check Index
                 if (index < 0 || index >= qty)
@@ -177,7 +177,7 @@ namespace ds
                 --qty;
             }
 
-            virtual T& at(int index)
+            T& at(int index) override
             {
                 // Check Index
                 if (index < 0 || index >= qty)
@@ -188,13 +188,13 @@ namespace ds
                 return arr[index];
             }
 
-            virtual bool contains(const T &item)
+            bool contains(const T &item) override
             {
                 // Return True If Item Could Be Found
                 return findFirst(item) != -1;
             }
 
-            virtual int size()
+            int size() override
             {
                 // Return Number Of Items In List
                 return qty;
