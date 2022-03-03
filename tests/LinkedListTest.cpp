@@ -21,7 +21,7 @@ TEST_CASE("Set elements values in LinkedList via List interface.")
     testListSet(&list);
 }
 
-TEST_CASE("Add & to front/back of LinkedList.")
+TEST_CASE("Add to front/back of LinkedList.")
 {
     ds::LinkedList<int> list;
     int qty = 5;

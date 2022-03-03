@@ -9,6 +9,12 @@ TEST_CASE("Add & remove ArrayList elements via List interface (no resize).")
     testListAddRemove(&list);
 }
 
+TEST_CASE("Add & remove ArrayList elements via List interface (resize required).")
+{
+    ds::ArrayList<int> list;
+    testListAddRemove(&list);
+}
+
 TEST_CASE("Put elements in ArrayList via List interface.")
 {
     ds::ArrayList<int> list;
@@ -19,10 +25,4 @@ TEST_CASE("Set elements values in ArrayList via List interface.")
 {
     ds::ArrayList<int> list;
     testListSet(&list);
-}
-
-TEST_CASE("Add & remove ArrayList elements via List interface (resize required).")
-{
-    ds::ArrayList<int> list;
-    testListAddRemove(&list);
 }
