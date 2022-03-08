@@ -29,7 +29,7 @@ void testListAddRemove(ds::List<int> *list)
     }
     SECTION("Add multiple elements.")
     {
-        int qty = 5;
+        const int qty = 6;
         int a[qty] = {1, 2, 3, 4, 5, 5};
         for (int i = 0; i < qty; ++i)
         {
@@ -58,7 +58,7 @@ void testListAddRemove(ds::List<int> *list)
 
 void testListPut(ds::List<int> *list)
 {
-    int qty = 6;
+    const int qty = 6;
     int a[qty] = {1, 2, 3, 4, 5, 5};
     SECTION("Put all elements in from front.")
     {
@@ -86,7 +86,7 @@ void testListPut(ds::List<int> *list)
 
 void testListSet(ds::List<int> *list)
 {
-    int qty = 5;
+    const int qty = 5;
     int a[qty] = {1, 2, 3, 4, 5};
     for (int i = 0; i < qty; ++i)
     {

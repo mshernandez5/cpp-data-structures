@@ -24,7 +24,7 @@ TEST_CASE("Set elements values in LinkedList via List interface.")
 TEST_CASE("Add to front/back of LinkedList.")
 {
     ds::LinkedList<int> list;
-    int qty = 5;
+    const int qty = 5;
     int vals[qty] = {1, 2, 3, 4, 5};
     SECTION("Add all from front.")
     {
