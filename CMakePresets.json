@@ -4,13 +4,26 @@
         {
             "name": "linux-debug",
             "displayName": "Linux Debug Configuration",
-            "description": "Create Debug Builds For Linux Using Make",
+            "description": "Create Debug Builds For Linux Using Make & g++",
             "generator": "Unix Makefiles",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_C_COMPILER": "gcc",
                 "CMAKE_CXX_COMPILER": "g++"
             },
             "binaryDir": "${sourceDir}/build/linux-debug"
+        },
+        {
+            "name": "windows-debug",
+            "displayName": "Windows Debug Configuration",
+            "description": "Create Debug Builds For Windows Using Ninja & MSVC",
+            "generator": "Ninja",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_C_COMPILER": "cl",
+                "CMAKE_CXX_COMPILER": "cl"
+            },
+            "binaryDir": "${sourceDir}/build/windows-debug"
         }
     ]
 }
