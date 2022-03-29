@@ -92,7 +92,7 @@ namespace ds
              * @return true If there are no items in the list.
              * @return false If there is at least one item in the list.
              */
-            bool empty() = 0;
+            virtual bool empty() = 0;
     };
 }
 
