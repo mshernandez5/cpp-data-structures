@@ -169,6 +169,11 @@ namespace ds
                 // Return Number Of Items In List
                 return qty;
             }
+
+            bool empty() override
+            {
+                return qty == 0;
+            }
     };
 }
 

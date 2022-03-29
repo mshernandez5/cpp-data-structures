@@ -85,6 +85,14 @@ namespace ds
              * @return int The number of items stored by the list.
              */
             virtual int size() = 0;
+
+            /**
+             * @brief Returns true if there are no items in the list.
+             * 
+             * @return true If there are no items in the list.
+             * @return false If there is at least one item in the list.
+             */
+            bool empty() = 0;
     };
 }
 
