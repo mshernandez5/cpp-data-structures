@@ -1,6 +1,8 @@
 #ifndef ARRAY_UTILITIES_H
 #define ARRAY_UTILITIES_H
 
+#include <utility>
+
 namespace ds::detail::array_util
 {
     /**

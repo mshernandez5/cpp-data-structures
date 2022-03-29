@@ -4,10 +4,10 @@
 namespace ds
 {
     /**
-     * @brief An abstract definition for List data structures.
+     * @brief An abstract interface for List implementations.
      * 
-     * A data structure which stores items in order of insertion
-     * where items can be accessed by index.
+     * Represents a data structure which stores items in order
+     * of insertion where items can be accessed by index.
      * 
      * @tparam T The type of item to store.
      */
