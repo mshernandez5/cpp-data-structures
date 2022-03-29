@@ -25,6 +25,8 @@ namespace ds
             /**
              * @brief Add an item at the given index.
              * 
+             * @throws std::out_of_range If the specified index is out of range.
+             * 
              * @param index The index.
              * @param item The item to add.
              */
@@ -32,6 +34,8 @@ namespace ds
 
             /**
              * @brief Replace the item at the given index.
+             * 
+             * @throws std::out_of_range If the specified index is out of range.
              * 
              * @param index The index.
              * @param item The new item to set at the given index.
@@ -50,12 +54,16 @@ namespace ds
             /**
              * @brief Remove the item at the given index.
              * 
+             * @throws std::out_of_range If the specified index is out of range.
+             * 
              * @param index The index of the item to remove. 
              */
             virtual void removeAt(int index) = 0;
 
             /**
              * @brief Get the item at the given index.
+             * 
+             * @throws std::out_of_range If the specified index is out of range.
              * 
              * @param index The index of the item.
              * @return T& A reference to the item.
