@@ -4,6 +4,7 @@
 #include <utility>
 #include <stdexcept>
 #include "List.h"
+#include "ArrayUtilities.h"
 
 namespace ds
 {
@@ -22,37 +23,6 @@ namespace ds
             int qty;
 
             T *arr;
-            
-            /**
-             * @brief Expand the array if necessary to ensure
-             *        at least a certain amount of free space
-             *        is available.
-             * 
-             * @param numSpaces The number of free spaces required.
-             */
-            void ensureSpace(int numSpaces)
-            {
-                // Return If No Resize Necessary
-                if (qty + numSpaces <= capacity)
-                {
-                    return;
-                }
-                // Find Target Capacity
-                int targetCapacity = capacity;
-                do
-                {
-                    targetCapacity *= 2;
-                } while (qty + numSpaces > targetCapacity);
-                // Resize To Meet Target Capacity
-                T *resized = new T[targetCapacity];
-                for (int i = 0; i < capacity; ++i)
-                {
-                    resized[i] = std::move(arr[i]);
-                }
-                delete[] arr;
-                arr = resized;
-                capacity = targetCapacity;
-            }
 
             /**
              * @brief Return the index corresponding to the first
@@ -107,7 +77,7 @@ namespace ds
             void add(const T &item) override
             {
                 // Ensure Array Can Accomodate 1 More Element
-                ensureSpace(1);
+                ds::detail::array_util::ensureCapacity(arr, capacity, qty + 1);
                 // Insert New Element
                 arr[qty++] = item;
             }
@@ -120,7 +90,7 @@ namespace ds
                     throw std::out_of_range("Index out of range!");
                 }
                 // Ensure Array Can Accomodate 1 More Element
-                ensureSpace(1);
+                ds::detail::array_util::ensureCapacity(arr, capacity, qty + 1);
                 // Shift Items Right To Open Space
                 for (int i = qty - 1; i >= index; --i)
                 {
