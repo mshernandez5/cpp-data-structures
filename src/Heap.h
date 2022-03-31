@@ -2,6 +2,7 @@
 #define HEAP_H
 
 #include <utility>
+#include <cstring>
 #include "ArrayUtilities.h"
 
 namespace ds::detail
@@ -91,6 +92,19 @@ namespace ds::detail
                 capacity = initialCapacity + 1; // Skipping Index 0
                 qty = 0;
                 arr = new T[capacity];
+            }
+
+            /**
+             * @brief Construct a deep copy of an existing Heap.
+             * 
+             * @param original The original Heap to copy.
+             */
+            Heap(const Heap &original)
+            {
+                capacity = original.capacity;
+                qty = original.qty;
+                arr = new T[capacity];
+                std::memcpy(arr, original.arr, sizeof(T) * capacity);
             }
 
             /**

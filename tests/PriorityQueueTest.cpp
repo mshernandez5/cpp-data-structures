@@ -68,3 +68,33 @@ TEST_CASE("Adding and removing sequential integers.")
         testAddRemoveSequentialInts(pq);
     }
 }
+
+TEST_CASE("Copy populated priority queue.")
+{
+    ds::HeapPriorityQueue<int> pq;
+    // Queue Integers 1-5 In Reverse Order
+    for (int i = 5; i > 0; --i)
+    {
+        pq.add(i);
+    }
+    // Copy Queue
+    ds::HeapPriorityQueue<int> copy = pq;
+    // Queue Integers 10-6 In Reverse Order
+    for (int i = 10; i > 5; --i)
+    {
+        pq.add(i);
+    }
+    // Check Contents
+    REQUIRE(pq.size() == 10);
+    REQUIRE(copy.size() == 5);
+    for (int i = 1; i < 11; ++i)
+    {
+        REQUIRE(pq.peek() == i);
+        pq.drop();
+        if (i < copy.size())
+        {
+            REQUIRE(copy.peek() == i);
+            copy.drop();
+        }
+    }
+}

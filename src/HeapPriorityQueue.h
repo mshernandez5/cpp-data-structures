@@ -38,6 +38,15 @@ namespace ds
             {
             }
 
+            /**
+             * @brief Construct a deep copy of an existing priority queue.
+             * 
+             * @param original The original priority queue to copy.
+             */
+            HeapPriorityQueue(const HeapPriorityQueue &original) : heap(original.heap)
+            {
+            }
+
             void add(const T &item) override
             {
                 heap.add(item);
