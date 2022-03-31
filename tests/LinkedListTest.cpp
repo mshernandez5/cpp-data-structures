@@ -75,3 +75,41 @@ TEST_CASE("Add to front/back of LinkedList.")
         }
     }
 }
+
+TEST_CASE("Copy LinkedList with contents.")
+{
+    ds::LinkedList<int> list;
+    // Add Integers 1-5
+    for (int i = 1; i < 6; ++i)
+    {
+        list.add(i);
+    }
+    // Copy List
+    ds::LinkedList<int> copy = list;
+    // Check That The Lists Are Equivalent
+    REQUIRE(list.size() == 5);
+    REQUIRE(copy.size() == 5);
+    for (int i = 0; i < list.size(); ++i)
+    {
+        int expected = i + 1;
+        REQUIRE(list.at(i) == expected);
+        REQUIRE(copy.at(i) == expected);
+    }
+    // Add Integers 6-10 To Original List
+    for (int i = 6; i < 11; ++i)
+    {
+        list.add(i);
+    }
+    // Check That Lists Are Now Different
+    REQUIRE(list.size() == 10);
+    REQUIRE(copy.size() == 5);
+    for (int i = 0; i < list.size(); ++i)
+    {
+        int expected = i + 1;
+        REQUIRE(list.at(i) == expected);
+        if (i < copy.size())
+        {
+            REQUIRE(copy.at(i) == expected);
+        }
+    }
+}

@@ -147,6 +147,34 @@ namespace ds
             }
 
             /**
+             * @brief Construct a deep copy of an existing LinkedList.
+             * 
+             * @param original The original LinkedList to copy.
+             */
+            LinkedList(const LinkedList &original)
+            {
+                qty = original.qty;
+                // Head & Tail Null If Original List Is Empty
+                if (qty == 0)
+                {
+                    head = nullptr;
+                    tail = nullptr;
+                    return;
+                }
+                // Original List Populated, Must Copy Node Chain
+                Node *og = original.head;
+                head = new Node {nullptr, nullptr, og->item};
+                Node *cur = head;
+                for (int i = 1; i < qty; ++i)
+                {
+                    og = og->next;
+                    cur->next = new Node {cur, nullptr, og->item};
+                    cur = cur->next;
+                }
+                tail = cur;
+            }
+
+            /**
              * @brief Add an item to the front of the list.
              * 
              * @param item The item to add.
