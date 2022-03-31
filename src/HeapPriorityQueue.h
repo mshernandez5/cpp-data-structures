@@ -22,6 +22,22 @@ namespace ds
         private:
             ds::detail::Heap<T> heap;
         public:
+            /**
+             * @brief Construct a new heap-based priority queue.
+             */
+            HeapPriorityQueue() : heap()
+            {
+            }
+
+            /**
+             * @brief Construct a new heap-based priority queue with a specific initial capacity.
+             * 
+             * @param initialCapacity The initial capacity.
+             */
+            HeapPriorityQueue(int initialCapacity) : heap(initialCapacity)
+            {
+            }
+
             void add(const T &item) override
             {
                 heap.add(item);
