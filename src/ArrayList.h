@@ -3,6 +3,7 @@
 
 #include <utility>
 #include <stdexcept>
+#include <cstring>
 #include "List.h"
 #include "ArrayUtilities.h"
 
@@ -64,6 +65,19 @@ namespace ds
                 capacity = initialCapacity;
                 qty = 0;
                 arr = new T[capacity];
+            }
+
+            /**
+             * @brief Construct a deep copy of an existing ArrayList.
+             * 
+             * @param original The original ArrayList to copy.
+             */
+            ArrayList(const ArrayList &original)
+            {
+                capacity = original.capacity;
+                qty = original.qty;
+                arr = new T[capacity];
+                std::memcpy(arr, original.arr, sizeof(T) * capacity);
             }
 
             /**
