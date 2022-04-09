@@ -81,8 +81,8 @@ TEST_CASE("Test ArrayList move semantics.")
     {
         REQUIRE(moved.at(i) == i * 2);
     }
-    // Make Sure Moved List Is Empty But Functional
-    SECTION("Moved list must be in empty but valid state.")
+    // Make Sure Original List Is Empty But Functional
+    SECTION("Original list must be in empty but valid state.")
     {
         REQUIRE(list.size() == 0);
         for (int i = 0; i < 10; ++i)
