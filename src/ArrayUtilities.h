@@ -33,7 +33,7 @@ namespace ds::detail::array_util
             return;
         }
         // Find Target Capacity
-        int targetCapacity = capacity;
+        int targetCapacity = (capacity == 0 ? 1 : capacity);
         do
         {
             targetCapacity *= 2;
