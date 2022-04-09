@@ -47,6 +47,17 @@ namespace ds
             {
             }
 
+            /**
+             * @brief Construct a new priority queue by taking the resources of another.
+             * 
+             * The original priority queue will be left in an empty but valid state.
+             * 
+             * @param original The original priority queue to move (R-value).
+             */
+            HeapPriorityQueue(HeapPriorityQueue &&original) : heap(std::move(original.heap))
+            {
+            }
+
             void add(const T &item) override
             {
                 heap.add(item);

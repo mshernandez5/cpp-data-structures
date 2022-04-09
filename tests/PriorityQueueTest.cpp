@@ -98,3 +98,38 @@ TEST_CASE("Copy populated priority queue.")
         }
     }
 }
+
+TEST_CASE("Test PriorityQueue/Heap move semantics.")
+{
+    // Queue Integers 1-5
+    ds::HeapPriorityQueue<int> pq;
+    for (int i = 5; i > 0; --i)
+    {
+        pq.add(i);
+    }
+    REQUIRE(pq.size() == 5);
+    // Move PriorityQueue Resources
+    ds::HeapPriorityQueue<int> moved = std::move(pq);
+    // Make Sure Original Priority Queue Is Empty But Functional
+    SECTION("Original priority queue is empty but in valid state.")
+    {
+        REQUIRE(pq.size() == 0);
+        for (int i = 10; i > 5; --i)
+        {
+            pq.add(i);
+        }
+        REQUIRE(pq.size() == 5);
+        for (int i = 6; i < 11; ++i)
+        {
+            REQUIRE(pq.peek() == i);
+            pq.drop();
+        }
+    }
+    // Check Contents Of Moved Priority Queue
+    REQUIRE(moved.size() == 5);
+    for (int i = 1; i < 6; ++i)
+    {
+        REQUIRE(moved.peek() == i);
+        moved.drop();
+    }
+}

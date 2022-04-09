@@ -108,6 +108,25 @@ namespace ds::detail
             }
 
             /**
+             * @brief Construct a new Heap by taking the resources of another.
+             * 
+             * The original Heap will be left in an empty but valid state.
+             * 
+             * @param original The original Heap to move (R-value).
+             */
+            Heap(Heap &&original)
+            {
+                // Take Resources
+                capacity = original.capacity;
+                qty = original.qty;
+                arr = original.arr;
+                // Reset State Of Original
+                original.capacity = 0;
+                original.qty = 0;
+                original.arr = nullptr;
+            }
+
+            /**
              * @brief Destroy the heap.
              */
             ~Heap()
