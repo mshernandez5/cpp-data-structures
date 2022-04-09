@@ -65,7 +65,7 @@ TEST_CASE("Copy ArrayList with contents.")
     }
 }
 
-TEST_CASE("Test move semantics.")
+TEST_CASE("Test ArrayList move semantics.")
 {
     // Create & Populate List
     ds::ArrayList<int> list;

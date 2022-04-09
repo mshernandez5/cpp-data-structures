@@ -133,6 +133,25 @@ namespace ds
             }
 
             /**
+             * @brief Construct a new LinkedList by taking the resources of another.
+             * 
+             * The original LinkedList will be left in an empty but valid state.
+             * 
+             * @param original The original LinkedList to move (R-value).
+             */
+            LinkedList(LinkedList &&original)
+            {
+                // Take Resources
+                head = original.head;
+                tail = original.tail;
+                qty = original.qty;
+                // Reset State Of Original
+                original.head = nullptr;
+                original.tail = nullptr;
+                original.qty = 0;
+            }
+
+            /**
              * @brief Destroy the linked list.
              */
             ~LinkedList()
