@@ -64,3 +64,35 @@ TEST_CASE("Copy ArrayList with contents.")
         }
     }
 }
+
+TEST_CASE("Test move semantics.")
+{
+    // Create & Populate List
+    ds::ArrayList<int> list;
+    for (int i = 0; i < 10; ++i)
+    {
+        list.add(i * 2);
+    }
+    REQUIRE(list.size() == 10);
+    // Move List Resources & Check Contents
+    ds::ArrayList<int> moved = std::move(list);
+    REQUIRE(moved.size() == 10);
+    for (int i = 0; i < 10; ++i)
+    {
+        REQUIRE(moved.at(i) == i * 2);
+    }
+    // Make Sure Moved List Is Empty But Functional
+    SECTION("Moved list must be in empty but valid state.")
+    {
+        REQUIRE(list.size() == 0);
+        for (int i = 0; i < 10; ++i)
+        {
+            list.add(i * 3);
+        }
+        REQUIRE(list.size() == 10);
+        for (int i = 0; i < 10; ++i)
+        {
+            REQUIRE(list.at(i) == i * 3);
+        }
+    }
+}

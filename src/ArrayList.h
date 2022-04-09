@@ -81,6 +81,25 @@ namespace ds
             }
 
             /**
+             * @brief Construct a new ArrayList by taking the resources of another.
+             * 
+             * The original ArrayList will be left in an empty but valid state.
+             * 
+             * @param original The original ArrayList to move (R-value).
+             */
+            ArrayList(ArrayList &&original)
+            {
+                // Take Resources
+                capacity = original.capacity;
+                qty = original.qty;
+                arr = original.arr;
+                // Reset State Of Original
+                original.capacity = 0;
+                original.qty = 0;
+                original.arr = nullptr;
+            }
+
+            /**
              * @brief Destroy the array list.
              */
             ~ArrayList()
