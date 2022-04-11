@@ -133,3 +133,21 @@ TEST_CASE("Test PriorityQueue/Heap move semantics.")
         moved.drop();
     }
 }
+
+TEST_CASE("Test PriorityQueue/Heap ordering with alternate comparator.")
+{
+    // Create Max Priority Queue With std::greater
+    ds::HeapPriorityQueue<int, std::greater<int>> pq;
+    // Add Integers In Reverse Order
+    for (int i = 0; i < 10; ++i)
+    {
+        pq.add(i * 2);
+    }
+    REQUIRE(pq.size() == 10);
+    // Check Ordering
+    for (int i = 9; i >= 0; --i)
+    {
+        REQUIRE(pq.peek() == i * 2);
+        pq.drop();
+    }
+}

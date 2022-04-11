@@ -8,15 +8,16 @@
 namespace ds::detail
 {
     /**
-     * @brief A min-heap implementation (keeps smallest element on top).
+     * @brief A min-heap implementation.
      * 
-     * The heap compares elements using the < operator;
-     * therefore the stored type must provide consistent
-     * comparisons between items to function correctly.
+     * The heap compares elements according to the functor given as
+     * a template parameter, defaulting to std::less which results
+     * in the "smallest" elements reaching the top of the heap.
      * 
      * @tparam T The type to store.
+     * @tparam Compare A comparison functor type for ordering.
      */
-    template<typename T>
+    template<typename T, typename Compare = std::less<T>>
     class Heap
     {
         private:
@@ -26,6 +27,8 @@ namespace ds::detail
             int qty;
 
             T *arr;
+
+            Compare compare;
 
             /**
              * @brief Turns the specified subtree into a min-heap.
@@ -39,11 +42,11 @@ namespace ds::detail
                 int leftIndex = rootIndex * 2;
                 int rightIndex = leftIndex + 1;
                 // Find Index Of Smallest Value
-                if (leftIndex <= qty && arr[leftIndex] < arr[smallestValueIndex])
+                if (leftIndex <= qty && compare(arr[leftIndex], arr[smallestValueIndex]))
                 {
                     smallestValueIndex = leftIndex;
                 }
-                if (rightIndex <= qty && arr[rightIndex] < arr[smallestValueIndex])
+                if (rightIndex <= qty && compare(arr[rightIndex], arr[smallestValueIndex]))
                 {
                     smallestValueIndex = rightIndex;
                 }
@@ -63,7 +66,7 @@ namespace ds::detail
             {
                 int child = qty;
                 int parent = child / 2;
-                while (child > 1 && arr[parent] > arr[child])
+                while (child > 1 && compare(arr[child], arr[parent]))
                 {
                     std::swap(arr[parent], arr[child]);
                     child = parent;

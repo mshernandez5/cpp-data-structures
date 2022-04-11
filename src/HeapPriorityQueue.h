@@ -7,20 +7,20 @@
 namespace ds
 {
     /**
-     * @brief A priority queue which uses a heap to maintain ordering.
+     * @brief A priority queue which uses a min-heap to maintain ordering.
      * 
-     * The priority queue sorts elements from least to greatest
-     * according to comparisons using the < operator;
-     * the priority queue therefore requires consistent
-     * comparisons between items to function correctly.
+     * The priority queue compares elements according to the functor given
+     * as a template parameter, defaulting to std::less which results
+     * in the "smallest" elements reaching the top of the heap.
      * 
      * @tparam T The type of item to store.
+     * @tparam Compare A comparison functor type for ordering.
      */
-    template<typename T>
+    template<typename T, typename Compare = std::less<T>>
     class HeapPriorityQueue : public Queue<T>
     {
         private:
-            ds::detail::Heap<T> heap;
+            ds::detail::Heap<T, Compare> heap;
         public:
             /**
              * @brief Construct a new heap-based priority queue.
