@@ -41,6 +41,18 @@ namespace ds
             int qty;
 
             /**
+             * @brief Swaps the underlying resources/data of two linked lists.
+             * 
+             * @param other The linked list to swap resources with.
+             */
+            void swapResources(LinkedList &other)
+            {
+                std::swap(head, other.head);
+                std::swap(tail, other.tail);
+                std::swap(qty, other.qty);
+            }
+
+            /**
              * @brief Remove a node from the linked list.
              * 
              * Removes a node from the linked list and
@@ -133,6 +145,34 @@ namespace ds
             }
 
             /**
+             * @brief Construct a copy of an existing LinkedList.
+             * 
+             * @param original The original LinkedList to copy.
+             */
+            LinkedList(const LinkedList &original)
+            {
+                qty = original.qty;
+                // Head & Tail Null If Original List Is Empty
+                if (qty == 0)
+                {
+                    head = nullptr;
+                    tail = nullptr;
+                    return;
+                }
+                // Original List Populated, Must Copy Node Chain
+                Node *og = original.head;
+                head = new Node {nullptr, nullptr, og->item};
+                Node *cur = head;
+                for (int i = 1; i < qty; ++i)
+                {
+                    og = og->next;
+                    cur->next = new Node {cur, nullptr, og->item};
+                    cur = cur->next;
+                }
+                tail = cur;
+            }
+
+            /**
              * @brief Construct a new LinkedList by taking the resources of another.
              * 
              * The original LinkedList will be left in an empty but valid state.
@@ -166,31 +206,17 @@ namespace ds
             }
 
             /**
-             * @brief Construct a deep copy of an existing LinkedList.
+             * @brief Replaces the contents of this linked list with those of another.
              * 
-             * @param original The original LinkedList to copy.
+             * @param other The linked list to copy resources from.
+             * @return LinkedList& A reference to this modified linked list.
              */
-            LinkedList(const LinkedList &original)
+            LinkedList& operator=(LinkedList other)
             {
-                qty = original.qty;
-                // Head & Tail Null If Original List Is Empty
-                if (qty == 0)
-                {
-                    head = nullptr;
-                    tail = nullptr;
-                    return;
-                }
-                // Original List Populated, Must Copy Node Chain
-                Node *og = original.head;
-                head = new Node {nullptr, nullptr, og->item};
-                Node *cur = head;
-                for (int i = 1; i < qty; ++i)
-                {
-                    og = og->next;
-                    cur->next = new Node {cur, nullptr, og->item};
-                    cur = cur->next;
-                }
-                tail = cur;
+                // Swap Resources With Local Copy
+                swapResources(other);
+                // Return Modified Object
+                return *this;
             }
 
             /**
