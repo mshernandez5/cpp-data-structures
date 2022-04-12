@@ -26,6 +26,18 @@ namespace ds
             T *arr;
 
             /**
+             * @brief Swaps the underlying resources/data of two array lists.
+             * 
+             * @param other The array list to swap resources with.
+             */
+            void swapResources(ArrayList &other)
+            {
+                std::swap(arr, other.arr);
+                std::swap(capacity, other.capacity);
+                std::swap(qty, other.qty);
+            }
+
+            /**
              * @brief Return the index corresponding to the first
              *        occurence of an item or -1 if none was found.
              * 
@@ -68,7 +80,7 @@ namespace ds
             }
 
             /**
-             * @brief Construct a deep copy of an existing ArrayList.
+             * @brief Construct a copy of an existing ArrayList.
              * 
              * @param original The original ArrayList to copy.
              */
@@ -105,6 +117,20 @@ namespace ds
             ~ArrayList()
             {
                 delete[] arr;
+            }
+
+            /**
+             * @brief Replaces the contents of this array list with those of another.
+             * 
+             * @param other The array list to copy resources from.
+             * @return ArrayList& A reference to this modified array list.
+             */
+            ArrayList& operator=(ArrayList other)
+            {
+                // Swap Resources With Local Copy
+                swapResources(other);
+                // Return Modified Object
+                return *this;
             }
 
             void add(const T &item) override

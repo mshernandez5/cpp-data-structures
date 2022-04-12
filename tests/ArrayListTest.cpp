@@ -96,3 +96,28 @@ TEST_CASE("Test ArrayList move semantics.")
         }
     }
 }
+
+TEST_CASE("Test ArrayList assignment operator.")
+{
+    // Add Integers 1-5 To First List
+    ds::ArrayList<int> list;
+    for (int i = 1; i < 6; ++i)
+    {
+        list.add(i);
+    }
+    // Add Integers 6-9 To Second List
+    ds::ArrayList<int> other;
+    for (int i = 6; i < 10; ++i)
+    {
+        other.add(i);
+    }
+    // Replace Contents Of Second List With Those Of First
+    other = list;
+    // Check Contents
+    REQUIRE(list.size() == 5);
+    REQUIRE(other.size() == list.size());
+    for (int i = 0; i < list.size(); ++i)
+    {
+        REQUIRE(list.at(i) == other.at(i));
+    }
+}
