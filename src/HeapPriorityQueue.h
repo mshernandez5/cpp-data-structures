@@ -11,7 +11,7 @@ namespace ds
      * 
      * The priority queue compares elements according to the functor given
      * as a template parameter, defaulting to std::less which results
-     * in the "smallest" elements reaching the top of the heap.
+     * in the "smallest" elements reaching the top of the queue.
      * 
      * @tparam T The type of item to store.
      * @tparam Compare A comparison functor type for ordering.
@@ -39,7 +39,7 @@ namespace ds
             }
 
             /**
-             * @brief Construct a deep copy of an existing priority queue.
+             * @brief Construct a copy of an existing priority queue.
              * 
              * @param original The original priority queue to copy.
              */
@@ -56,6 +56,17 @@ namespace ds
              */
             HeapPriorityQueue(HeapPriorityQueue &&original) : heap(std::move(original.heap))
             {
+            }
+
+            /**
+             * @brief Replaces the contents of this HeapPriorityQueue with those of another.
+             * 
+             * @param other The HeapPriorityQueue to copy resources from.
+             * @return HeapPriorityQueue& A reference to this modified HeapPriorityQueue.
+             */
+            HeapPriorityQueue& operator=(HeapPriorityQueue other)
+            {
+                heap = other.heap;
             }
 
             void add(const T &item) override

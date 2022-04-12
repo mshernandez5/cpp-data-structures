@@ -31,6 +31,18 @@ namespace ds::detail
             Compare compare;
 
             /**
+             * @brief Swaps the underlying resources/data of two heaps.
+             * 
+             * @param other The heap to swap resources with.
+             */
+            void swapResources(Heap &other)
+            {
+                std::swap(arr, other.arr);
+                std::swap(capacity, other.capacity);
+                std::swap(qty, other.qty);
+            }
+
+            /**
              * @brief Turns the specified subtree into a min-heap.
              *        Child subtrees, if any, must already be min-heaps.
              * 
@@ -98,7 +110,7 @@ namespace ds::detail
             }
 
             /**
-             * @brief Construct a deep copy of an existing Heap.
+             * @brief Construct a copy of an existing Heap.
              * 
              * @param original The original Heap to copy.
              */
@@ -135,6 +147,20 @@ namespace ds::detail
             ~Heap()
             {
                 delete[] arr;
+            }
+
+            /**
+             * @brief Replaces the contents of this heap with those of another.
+             * 
+             * @param other The heap to copy resources from.
+             * @return Heap& A reference to this modified heap.
+             */
+            Heap& operator=(Heap other)
+            {
+                // Swap Resources With Local Copy
+                swapResources(other);
+                // Return Modified Object
+                return *this;
             }
 
             /**

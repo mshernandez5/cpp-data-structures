@@ -134,6 +134,37 @@ TEST_CASE("Test PriorityQueue/Heap move semantics.")
     }
 }
 
+TEST_CASE("Test priority queue assignment operator.")
+{
+    // Create First Queue With Integers 1-5
+    ds::HeapPriorityQueue<int> pq;
+    for (int i = 5; i > 0; --i)
+    {
+        pq.add(i);
+    }
+    // Create Second Queue With Different Contents
+    ds::HeapPriorityQueue<int> other;
+    for (int i = 10; i > 2; --i)
+    {
+        other.add(i);
+    }
+    // Ensure Correct Sizes
+    REQUIRE(pq.size() == 5);
+    REQUIRE(other.size() == 8);
+    // Replace Contents Of Second
+    other = pq;
+    // Check Contents
+    REQUIRE(pq.size() == 5);
+    REQUIRE(other.size() == 5);
+    for (int i = 1; i < 6; ++i)
+    {
+        REQUIRE(pq.peek() == i);
+        pq.drop();
+        REQUIRE(other.peek() == i);
+        other.drop();
+    }
+}
+
 TEST_CASE("Test PriorityQueue/Heap ordering with alternate comparator.")
 {
     // Create Max Priority Queue With std::greater
