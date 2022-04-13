@@ -67,6 +67,7 @@ namespace ds
             HeapPriorityQueue& operator=(HeapPriorityQueue other)
             {
                 heap = other.heap;
+                return *this;
             }
 
             void add(const T &item) override
